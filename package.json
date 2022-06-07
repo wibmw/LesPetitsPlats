@@ -1,0 +1,29 @@
+{
+  "name": "LesPetitsPlats",
+  "version": "1.0.0",
+  "description": "P7 - Les petits plats",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass --watch ./sass/main.scss:./css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wibmw/LesPetitsPlats.git"
+  },
+  "author": "ILAOUER",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wibmw/LesPetitsPlats/issues"
+  },
+  "homepage": "https://github.com/wibmw/LesPetitsPlats#readme",
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.17.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.26.0"
+  }
+}

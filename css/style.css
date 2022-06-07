@@ -1,0 +1,179 @@
+/******************* COLORS ************************/
+/******************* Sorter ************************/
+/******************* Global Flex ************************/
+/******************* Like Icon ************************/
+/******************* Center of the page ************************/
+/******************* Photographer Info ************************/
+/******************* Accessibility ************************/
+body {
+  margin: 0;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body main {
+  width: 100%;
+}
+
+/*:focus-visible {
+    outline: 3px solid $color-pri-dark;
+    border-radius: 10px;
+  }*/
+body {
+  font-family: "Lato", "DM Sans", sans-serif;
+  font-size: 100%;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  /* added line */
+  border: 0;
+}
+
+#searchSection {
+  display: flex;
+  justify-content: center;
+}
+
+.search {
+  max-width: 1240px;
+  width: 100%;
+  position: relative;
+  margin-right: 3%;
+  margin-left: 3%;
+  min-height: 60px;
+  padding: 0 10px 0 10px;
+  background: #E7E7E7;
+  color: #666;
+  border-radius: 5px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-justify: space-between;
+  justify-content: space-between;
+}
+.search .input-field {
+  width: 85%;
+  font-size: 16px;
+  color: #333;
+  background-color: transparent;
+  border: 0;
+  overflow: visible;
+  outline: 0;
+  margin-left: 10px;
+}
+.search .btn-search {
+  background: rgba(255, 255, 255, 0);
+  border: 0;
+  cursor: pointer;
+}
+.search .btn-search svg {
+  width: 40px;
+  height: 40px;
+}
+
+#gallery {
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  gap: 50px;
+}
+#gallery article {
+  width: 380px;
+  height: 364px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 5px;
+}
+#gallery article .image {
+  height: 50%;
+  background-color: #C7BEBE;
+}
+#gallery article .container {
+  height: 50%;
+  background-color: #E7E7E7;
+  padding: 0 20px 0 20px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 400;
+}
+#gallery article .container h2 {
+  font-size: 18px;
+  width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#gallery article .container .recipe {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  overflow: hidden;
+  margin-top: -30px;
+}
+#gallery article .container .recipe ul {
+  width: 50%;
+}
+#gallery article .container .recipe ul li {
+  list-style-type: none;
+  font-size: 12px;
+  text-indent: -40px;
+}
+#gallery article .container .recipe p {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  width: 50%;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  font-family: "Roboto";
+  overflow: hidden;
+}
+
+/*
+
+@import "./components/contactForm";
+@import "./components/lightbox";
+@import "./components/likes";
+@import "./components/sort";
+
+
+@import "./layout/photographerHeader";
+*/
+.logo {
+  width: 268px;
+  height: 93px;
+  margin-top: 48px;
+  margin-bottom: 20px;
+}
+
+/**************** Photographers's list ****************/
+.photographers_section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 70px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+.photographers_section article {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/*# sourceMappingURL=style.css.map */

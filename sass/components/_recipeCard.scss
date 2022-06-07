@@ -1,0 +1,64 @@
+#gallery {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+
+    & article {
+        width: 380px;
+        height: 364px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border-radius: 5px;
+        & .image {
+            height: 50%;
+            background-color: #C7BEBE;
+        }
+        & .container {
+            height: 50%;
+            background-color: #E7E7E7;
+            padding: 0 20px 0 20px;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            font-weight: 400;
+            & h2 {
+                font-size: 18px;
+                width: 70%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space:nowrap;
+            }
+            & .recipe {
+                position: relative;
+                display: flex;
+                align-items: baseline;
+                overflow:hidden;
+                margin-top: -30px;
+                & ul {
+                    width: 50%;
+                    & li {
+                        list-style-type: none;
+                        font-size: 12px;
+                        text-indent: -40px;
+                    }
+                }
+                & p {
+                    display: -webkit-box;
+                    -webkit-line-clamp:6;
+                    -webkit-box-orient: vertical;
+                    width: 50%;
+                    font-size: 12px;
+                    text-overflow: ellipsis;
+                    font-family: "Roboto";
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+}
