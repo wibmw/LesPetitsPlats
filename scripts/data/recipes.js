@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 /* eslint-disable max-len */
 // eslint-disable-next-line no-unused-vars
 export const recipes = [

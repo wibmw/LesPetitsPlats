@@ -1,4 +1,5 @@
 import * as Data from '../data/recipes.js'
+import SearchForm from '../template/SearchForm.js'
 import RecipeCard from '../template/RecipeCard.js'
 
 class IndexPage {
@@ -16,6 +17,8 @@ class IndexPage {
     }
 
     init() {
+        // Search Form Render
+        document.querySelector('#searchSection').appendChild(new SearchForm().searchRender())
         // Get recipes
         this.displayIndexData(Data.recipes)
     }

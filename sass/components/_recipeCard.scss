@@ -1,11 +1,10 @@
 #gallery {
-    margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
     gap: 50px;
-
+    margin: 50px;
     & article {
         width: 380px;
         height: 364px;
@@ -15,11 +14,11 @@
         border-radius: 5px;
         & .image {
             height: 50%;
-            background-color: #C7BEBE;
+            background-color: $back-img;
         }
         & .container {
             height: 50%;
-            background-color: #E7E7E7;
+            background-color: $back-color;
             padding: 0 20px 0 20px;
             display: flex;
             flex-flow: row wrap;
@@ -46,6 +45,7 @@
                         list-style-type: none;
                         font-size: 12px;
                         text-indent: -40px;
+                        white-space: break-spaces;
                     }
                 }
                 & p {

@@ -43,51 +43,71 @@ body {
 #searchSection {
   display: flex;
   justify-content: center;
+  margin: 0 50px;
 }
-
-.search {
+#searchSection .search {
   max-width: 1240px;
   width: 100%;
-  position: relative;
-  margin-right: 3%;
-  margin-left: 3%;
   min-height: 60px;
   padding: 0 10px 0 10px;
   background: #E7E7E7;
-  color: #666;
+  color: #C7BEBE;
   border-radius: 5px;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-justify: space-between;
   justify-content: space-between;
 }
-.search .input-field {
-  width: 85%;
+#searchSection .search .input-field {
+  width: 90%;
   font-size: 16px;
   color: #333;
   background-color: transparent;
   border: 0;
   overflow: visible;
   outline: 0;
-  margin-left: 10px;
 }
-.search .btn-search {
+#searchSection .search .btn-search {
   background: rgba(255, 255, 255, 0);
   border: 0;
   cursor: pointer;
 }
-.search .btn-search svg {
+#searchSection .search .btn-search svg {
   width: 40px;
   height: 40px;
 }
 
+/**************** Error control ****************/
+.search[data-error]::after {
+  content: attr(data-error);
+  font-size: 2em;
+  font-weight: 600;
+  color: #D04F4F;
+  display: block;
+  margin-top: 40px;
+  margin-left: 35px;
+  font-size: 15px;
+  text-align: left;
+  transition: 0.3s;
+  position: absolute;
+}
+
+.search[data-error-visible=true]::after {
+  opacity: 1;
+  margin-bottom: 5px;
+}
+
+.search[data-error-visible=true] {
+  border: 2px solid #D04F4F;
+}
+
 #gallery {
-  margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   gap: 50px;
+  margin: 50px;
 }
 #gallery article {
   width: 380px;
@@ -133,6 +153,7 @@ body {
   list-style-type: none;
   font-size: 12px;
   text-indent: -40px;
+  white-space: break-spaces;
 }
 #gallery article .container .recipe p {
   display: -webkit-box;

@@ -1,5 +1,3 @@
-import Lightbox from './LightboxModal.js'
-import MediaCard from './MediaCard.js'
 import ProxyRatingSorter from '../proxy/cacheProxy.js'
 import * as ModalAccessibility from '../utils/modalAccessibility.js'
 import {
