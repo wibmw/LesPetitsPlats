@@ -29,8 +29,7 @@ export default class RecipeCard {
     // Generate the media cards
         let dom = ''
         dom += `
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="image">
-                </img>
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="image" alt="Image emplacement" />
                 <div class="container">
                     <h2>${this.name}</h2><h3><span class="far fa-clock" /> ${this.time} min</h3>
                     <div class="recipe"><ul class="ingredients" >`

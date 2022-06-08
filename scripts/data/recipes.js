@@ -165,7 +165,7 @@ export const recipes = [
                 quantity: 2,
             },
             {
-                ingredient: 'Crème fraiche',
+                ingredient: 'Crème fraîche',
                 quantity: 2,
                 unit: 'cuillères à soupe',
             },
@@ -203,7 +203,7 @@ export const recipes = [
                 quantity: '2',
             },
             {
-                ingredient: 'Crème fraiche',
+                ingredient: 'Crème fraîche',
                 quantity: 25,
                 unit: 'cl',
             },
@@ -383,7 +383,7 @@ export const recipes = [
                 unit: 'tranches',
             },
             {
-                ingredient: 'Pommes',
+                ingredient: 'Pomme',
                 quantity: 1,
             },
             {
@@ -411,7 +411,7 @@ export const recipes = [
                 unit: 'g',
             },
             {
-                ingredient: 'Pommes',
+                ingredient: 'Pomme',
                 quantity: 8,
             },
             {
@@ -456,7 +456,7 @@ export const recipes = [
                 unit: 'cuillère à soupe',
             },
             {
-                ingredient: "huile d'olive",
+                ingredient: "Huile d'olive",
                 quantity: 2,
                 unit: 'cuillère à soupe',
             },
@@ -571,7 +571,7 @@ export const recipes = [
                 unit: 'tiges',
             },
             {
-                ingredient: "huile d'olives",
+                ingredient: "Huile d'olive",
                 quantity: 2,
                 unit: 'cuillère à soupe',
             },
@@ -687,7 +687,7 @@ export const recipes = [
                 unit: 'g',
             },
             {
-                ingredient: 'Crème fraiche',
+                ingredient: 'Crème fraîche',
                 quantity: 200,
                 unit: 'g',
             },
@@ -697,7 +697,7 @@ export const recipes = [
                 unit: 'g',
             },
             {
-                ingredient: "huile d'olive",
+                ingredient: "Huile d'olive",
                 quantity: 1,
                 unit: 'cuillères à soupe',
             },
@@ -737,14 +737,14 @@ export const recipes = [
                 unit: 'cl',
             },
             {
-                ingredient: 'Crème Fraiche',
+                ingredient: 'Crème fraîche',
                 quantity: 1,
                 unit: 'cuillères à soupe',
             },
         ],
         time: 30,
         description: 'Cuisiner la viande hachée dans une poêle à frire. Dans une autre faire cuire les oignons découpés en fins dés avec un peu de beurre. Ajouter du vin rouge. Mélanger les oignons avec la viande hachée. Faire cuire les pates le temps indiqué sur le paquet. Ajouter le coulis de tomates à la viande hachée. Une fois que les pates sont cuites, ajouter la crème fraiche à la viande hachée. Servir.',
-        appliance: 'Casserole.',
+        appliance: 'Casserole',
         ustensils: ['Cuillère en bois', 'louche', 'couteau'],
     },
     {
@@ -807,7 +807,7 @@ export const recipes = [
                 quantity: 3,
             },
             {
-                ingredient: 'Crème Fraîche',
+                ingredient: 'Crème fraîche',
                 quantity: 20,
                 unit: 'cl',
             },
@@ -910,7 +910,7 @@ export const recipes = [
                 quantity: 1,
             },
             {
-                ingredient: "Huile d'olives",
+                ingredient: "Huile d'olive",
             },
             {
                 ingredient: 'Oignon',
@@ -1283,7 +1283,7 @@ export const recipes = [
                 unit: 'g',
             },
             {
-                ingredient: "Huile d'olives",
+                ingredient: "Huile d'olive",
                 quantity: 25,
                 unit: 'cl',
             },
@@ -1612,7 +1612,7 @@ export const recipes = [
                 unit: 'g',
             },
             {
-                ingredient: 'Crème Fraîche',
+                ingredient: 'Crème fraîche',
                 quantity: 20,
                 unit: 'cl',
             },
@@ -1663,7 +1663,7 @@ export const recipes = [
         servings: 4,
         ingredients: [
             {
-                ingredient: 'Bananes',
+                ingredient: 'Banane',
                 quantity: 2,
             },
             {
