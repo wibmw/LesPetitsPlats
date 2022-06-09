@@ -1,11 +1,13 @@
-@import "./utils/variables";
-@import "./utils/mixins";
+@import './utils/variables';
+@import './utils/mixins';
 
-@import "./base/base";
-@import "./base/typography";
+@import './base/base';
+@import './base/typography';
 
-@import "./components/search";
-@import "./components/recipeCard";
+@import './components/search';
+@import './components/recipeCard';
+@import './components/tag';
+
 /*
 
 @import "./components/contactForm";
@@ -16,6 +18,5 @@
 
 @import "./layout/photographerHeader";
 */
-@import "./layout/header";
-@import "./pages/index";
-
+@import './layout/header';
+@import './pages/index';

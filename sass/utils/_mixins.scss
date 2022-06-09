@@ -1,58 +1,58 @@
 /******************* Global Flex ************************/
 @mixin flex {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-  }
-  
-  @mixin wrap {
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
-  
-  @mixin nowrap {
-    -webkit-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-  }
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+}
 
-  @mixin flex-nowrap {
-    @include flex;
-    @include nowrap;
-  }
+@mixin wrap {
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
 
-  @mixin flex-center {
-    justify-content: center;
-    align-items: center;
-  }
+@mixin nowrap {
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+
+@mixin flex-nowrap {
+  @include flex;
+  @include nowrap;
+}
+
+@mixin flex-center {
+  justify-content: center;
+  align-items: center;
+}
 
 /******************* Like Icon ************************/
 @mixin inactive-heart {
   @include flex-nowrap;
   flex-direction: row-reverse;
   font-size: 1.3rem;
-  text-shadow: 0 0 3px rgba(0,0,0,1);
-  color:white;
-  transition:1s;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 1);
+  color: white;
+  transition: 1s;
 }
 
 @mixin active-heart {
-  text-shadow: 0 0 0px rgba(0,0,0,0);
-  background:-moz-linear-gradient(0deg, $color-sec 0%, $color-pri 100%); 
-  background: -webkit-linear-gradient(0deg, $color-sec 0%, $color-pri 100%); 
+  text-shadow: 0 0 0px rgba(0, 0, 0, 0);
+  background: -moz-linear-gradient(0deg, $color-sec 0%, $color-pri 100%);
+  background: -webkit-linear-gradient(0deg, $color-sec 0%, $color-pri 100%);
   background: linear-gradient(0deg, $color-sec 0%, $color-pri 100%);
   -webkit-background-clip: text;
   -moz-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color:transparent;
+  -webkit-text-fill-color: transparent;
   transition: 0.7s;
 }
 
 /******************* Center of the page ************************/
 @mixin align-center {
-    width: 100%;
-    text-align: center;
-  }
+  width: 100%;
+  text-align: center;
+}
 
 /******************* Photographer Info ************************/
 @mixin photographer-picture {
@@ -61,34 +61,33 @@
   object-fit: cover;
   border-radius: 50% 50%;
   background: $back-color-picks;
-  box-shadow: 0px 4px 12px rgb(0 0 0 / 25%); 
-  //filter: blur(0.7rem); 
+  box-shadow: 0px 4px 12px rgb(0 0 0 / 25%);
+  //filter: blur(0.7rem);
 }
 
 @mixin article-h3-to-span {
   & div {
     text-align: center;
-    & h3{
+    & h3 {
       color: $color-pri-dark;
       font-size: 0.9rem;
       font-weight: 600;
       margin-top: 0px;
       margin-bottom: 0px;
     }
-    & div{
-        font-size: 0.6rem;
-        font-weight: 600;
+    & div {
+      font-size: 0.6rem;
+      font-weight: 600;
     }
-    & span{
-        color: #757575;
-        font-size: 0.6rem;      
+    & span {
+      color: #757575;
+      font-size: 0.6rem;
     }
   }
-
 }
 
 @mixin article-h2 {
-  & h2{
+  & h2 {
     color: $color-pri-light;
     font-size: 2.5rem;
     font-weight: 500;

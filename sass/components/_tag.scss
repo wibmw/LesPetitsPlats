@@ -1,0 +1,105 @@
+* {
+  box-sizing: border-box;
+}
+
+.tag {
+  margin: 30px 100px;
+  overflow: hidden;
+  border-radius: 5px;
+  display: inline-block;
+  white-space: nowrap;
+  gap: 30px;
+  width: 100%;
+
+  & .dropdown {
+    float: left;
+    overflow: hidden;
+    font-size: 16px;
+    margin: 20px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    width: auto;
+    &:hover {
+      .row {
+        display: block;
+      }
+      em {
+        transform: rotate(-180deg);
+        transition: 0.5s ease-in-out;
+      }
+    }
+    & .dropdown-button {
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      outline: none;
+      padding: 14px 16px;
+      background-color: inherit;
+      width: 95%;
+      color: $color;
+      &::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        color: $color;
+      }
+    }
+    & em {
+      position: absolute;
+      margin: 13px 0 0 -10px;
+      color: $color;
+    }
+    & .row {
+      background-color: inherit;
+      display: none;
+      z-index: 1;
+      transition: 0.5s ease-in-out;
+      & .col {
+        float: left;
+        width: 33.33%;
+        padding: 10px;
+        line-height: 3px;
+        display: flex;
+        flex-flow: column nowrap;
+        & li {
+          float: none;
+          color: white;
+          padding: 10px;
+          text-decoration: none;
+          display: inline-block;
+          text-align: left;
+          white-space: nowrap;
+        }
+        & li:hover {
+          background-color: #ddd;
+        }
+      }
+    }
+
+    & .row:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
+}
+#ingredients {
+  background-color: $blue-tag;
+}
+#appareils {
+  background-color: $green-tag;
+}
+#ustensils {
+  background-color: $red-tag;
+}
+
+/* Create three equal columns that floats next to each other */
+
+/* Clear floats after the columns */
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col {
+    width: 100%;
+    height: auto;
+  }
+}

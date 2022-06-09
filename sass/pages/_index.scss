@@ -1,17 +1,13 @@
-
 /**************** Photographers's list ****************/
 .photographers_section {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    & article {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-    }
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 70px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  & article {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
 }
-
-
-
