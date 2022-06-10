@@ -46,7 +46,7 @@ body {
   margin: 0 50px;
 }
 #searchSection .search {
-  max-width: 1240px;
+  max-width: 1280px;
   width: 100%;
   min-height: 60px;
   padding: 0 10px 0 10px;
@@ -174,7 +174,7 @@ body {
 }
 
 .tag {
-  margin: 0px 100px;
+  margin: 0px 60px;
   overflow: hidden;
   border-radius: 5px;
   display: inline-block;
@@ -269,9 +269,10 @@ body {
 }
 /* ************************ SELECTED TAGS ******************************** */
 .selectedTag {
-  margin: 20px 130px;
+  margin: 20px 90px;
   color: white;
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 }
 .selectedTag span {

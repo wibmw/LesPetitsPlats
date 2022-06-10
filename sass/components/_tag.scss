@@ -3,7 +3,7 @@
 }
 
 .tag {
-  margin: 0px 100px;
+  margin: 0px 60px;
   overflow: hidden;
   border-radius: 5px;
   display: inline-block;
@@ -102,9 +102,10 @@
 /* ************************ SELECTED TAGS ******************************** */
 
 .selectedTag {
-  margin: 20px 130px;
+  margin: 20px 90px;
   color: $color;
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   & span {
     padding: 10px;

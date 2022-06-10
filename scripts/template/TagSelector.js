@@ -29,9 +29,11 @@ export default class TagSelector {
     const sTag = `${tag}<em class="far fa-times-circle"></em>`
     const span = CreaE('span')
     SetAt(className, span)
+    span.setAttribute('value', tag)
     span.innerHTML = sTag
     QS('em', span).addEventListener('click', () => {
       span.parentElement.removeChild(span)
+      QS('.btn-search').click()
     })
     selectedTag.appendChild(span)
   }
@@ -42,6 +44,7 @@ export default class TagSelector {
       const tag = li.getAttribute('value')
       li.addEventListener('click', () => {
         this.createTag(tag)
+        QS('.btn-search').click()
       })
       SetAt('dropdown-item', li)
     })

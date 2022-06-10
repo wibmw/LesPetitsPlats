@@ -38,7 +38,7 @@ export default class TagFactory {
       }
       case 'UST': {
         // Get all Ustensiles
-        this.recipes.forEach((recipe) => tags.push(recipe.ustensils.map((item) => item.toLowerCase()))) // `${item[0].toUpperCase()}${item.slice(1)}`
+        this.recipes.forEach((recipe) => tags.push(recipe.ustensils.map((item) => item.toLowerCase())))
         return this.reduceTags(tags)
       }
       default:

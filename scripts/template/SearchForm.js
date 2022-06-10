@@ -4,13 +4,40 @@ import RecipeCard from './RecipeCard.js'
 import TagSelector from './TagSelector.js'
 import TagFactory from '../factories/tagFactory.js'
 import * as ModalAccessibility from '../utils/modalAccessibility.js'
-import { CreaE, QS, SetAt } from '../utils/domUtils.js'
+import { CreaE, QS, QSAll, SetAt } from '../utils/domUtils.js'
 
 export default class SearchForm {
   constructor() {
     this.$wrapperSearch = CreaE('div')
     SetAt('search', this.$wrapperSearch)
     this.filteredRecipes = []
+    this.error = 'Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc...'
+  }
+
+  getSelectors = () => {
+    const ingTag = []
+    const appTag = []
+    const ustTag = []
+
+    QSAll('.selectedTag > span').forEach((span) => {
+      const tagType = span.getAttribute('class')
+      const value = span.getAttribute('value')
+      switch (tagType) {
+        case 'ingTag':
+          ingTag.push(value)
+          break
+        case 'appTag':
+          appTag.push(value)
+          break
+        case 'ustTag':
+          ustTag.push(value)
+          break
+        default:
+          throw error
+      }
+    })
+
+    return [ingTag, appTag, ustTag]
   }
 
   //* ******************** DISPLAY MESSAGES  ***********************************/
@@ -26,35 +53,57 @@ export default class SearchForm {
     element.setAttribute('data-error', message)
   }
 
+  isIncluded(searchIn, searchFor) {
+    if (searchIn.includes(searchFor) || searchFor == null) return true
+    return false
+  }
+
+  renderGallery() {
+    const search = this.$wrapperSearch
+    const searchField = search.querySelector('.input-field')
+    const searchValue = searchField.value.toLowerCase()
+    QS('#gallery').innerHTML = ''
+    this.filteredRecipes = []
+    // Get Tags Selectors
+    const tagsSelectors = this.getSelectors()
+    const ingTags = tagsSelectors[0].join()
+    const appTags = tagsSelectors[1].join()
+    const ustTags = tagsSelectors[2].join()
+
+    // Filter search
+    data.forEach((recipe) => {
+      const ingredients = recipe.ingredients.map((item) => item.ingredient).join()
+      const recipeIn = `${recipe.name} ${ingredients} ${recipe.description}`.toLowerCase()
+      const isSearchIncluded = this.isIncluded(recipeIn, searchValue)
+      const isIngIncluded = this.isIncluded(ingredients.toLowerCase(), ingTags)
+      const isAppIncluded = this.isIncluded(recipe.appliance.toLowerCase(), appTags)
+      console.log(recipe.appliance, ' /n', appTags)
+      const isUstIncluded = this.isIncluded(recipe.ustensils.map((item) => item).join(), ustTags)
+      console.log(isSearchIncluded, ' /n', isIngIncluded, ' /n', isAppIncluded, ' /n', isUstIncluded)
+      if (isSearchIncluded && isIngIncluded && isAppIncluded && isUstIncluded) {
+        const card = new RecipeCard(recipe)
+        document.querySelector('#gallery').appendChild(card.getRecipeCard())
+        this.filteredRecipes.push(recipe)
+      }
+    })
+    if (this.filteredRecipes.length) this.clearValidationMessage(search)
+    else {
+      this.setValidationMessage(search, this.error)
+      QS('#gallery').innerHTML = ''
+    }
+  }
+
   searchValidation() {
     const search = this.$wrapperSearch
     const searchField = search.querySelector('.input-field')
-    if (searchField.value.length >= 3) {
-      // console.log(searchField.value.length, ' /n', searchField.value)
-      const searchValue = searchField.value.toLowerCase()
-      QS('#gallery').innerHTML = ''
-      this.filteredRecipes = []
-      // Filter search
-      data.forEach((recipe) => {
-        const ingredients = recipe.ingredients
-          .map((item) => item.ingredient)
-          .join(',')
-          .replaceAll(',', ' ')
-        const searchIn = `${recipe.name} ${ingredients} ${recipe.description}`.toLowerCase()
-        if (searchIn.includes(searchValue)) {
-          const card = new RecipeCard(recipe)
-          document.querySelector('#gallery').appendChild(card.getRecipeCard())
-          this.filteredRecipes.push(recipe)
-        }
-      })
-      this.filteredRecipes.length
-        ? this.clearValidationMessage(search)
-        : this.setValidationMessage(
-            search,
-            'Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc...'
-          )
+    const selectors = this.getSelectors()
+    const isSelectorsNotEmpty = selectors[0].length + selectors[1].length + selectors[2].length
+
+    if (searchField.value.length >= 3 || isSelectorsNotEmpty) {
+      this.renderGallery()
     } else {
-      this.setValidationMessage(search, 'Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc..')
+      QS('#gallery').innerHTML = ''
+      this.setValidationMessage(search, this.error)
     }
   }
 
