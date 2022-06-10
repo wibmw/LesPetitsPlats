@@ -45,10 +45,8 @@ export default class SearchForm {
           const card = new RecipeCard(recipe)
           document.querySelector('#gallery').appendChild(card.getRecipeCard())
           this.filteredRecipes.push(recipe)
-          console.log(searchField.value.length, ' /n', searchValue)
         }
       })
-      // console.log(this.filteredRecipes.length)
       this.filteredRecipes.length
         ? this.clearValidationMessage(search)
         : this.setValidationMessage(
@@ -77,12 +75,9 @@ export default class SearchForm {
     ModalAccessibility.onEnterClick(searchButton)
 
     const tag = new TagFactory(data)
-    new TagSelector(tag.getTagsList('ING')).render('ingredients')
-    new TagSelector(tag.getTagsList('APP')).render('appareils')
-    new TagSelector(tag.getTagsList('UST')).render('ustensils')
-    /* tag.getTagsList('ING')
-    console.log(tag.getTagsList('APP'))
-    console.log(tag.getTagsList('UST')) */
+    new TagSelector(tag.getTagsList('ING'), 'ING').render('ingredients')
+    new TagSelector(tag.getTagsList('APP'), 'APP').render('appareils')
+    new TagSelector(tag.getTagsList('UST'), 'UST').render('ustensils')
   }
 
   searchRender() {

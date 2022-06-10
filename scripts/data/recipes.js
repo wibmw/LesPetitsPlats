@@ -87,7 +87,7 @@ const recipes = [
         unit: 'ml',
       },
       {
-        ingredient: 'Coulis de tomate',
+        ingredient: 'Coulis de tomates',
         quantity: 25,
         unit: 'cl',
       },
@@ -743,7 +743,7 @@ const recipes = [
         quantity: 2,
       },
       {
-        ingredient: 'Coulis de tomate',
+        ingredient: 'Coulis de tomates',
         quantity: 300,
         unit: 'g',
       },

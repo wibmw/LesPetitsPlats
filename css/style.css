@@ -107,8 +107,7 @@ body {
   flex-direction: row;
   justify-content: center;
   gap: 35px;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin: 50px;
 }
 #gallery article {
   width: 400px;
@@ -175,12 +174,11 @@ body {
 }
 
 .tag {
-  margin: 30px 100px;
+  margin: 0px 100px;
   overflow: hidden;
   border-radius: 5px;
   display: inline-block;
   white-space: nowrap;
-  gap: 30px;
   width: 100%;
 }
 .tag .dropdown {
@@ -220,6 +218,7 @@ body {
   color: white;
 }
 .tag .dropdown .row {
+  box-sizing: border-box;
   background-color: inherit;
   display: none;
   z-index: 1;
@@ -243,12 +242,8 @@ body {
   white-space: nowrap;
 }
 .tag .dropdown .row .col li:hover {
-  background-color: #ddd;
-}
-.tag .dropdown .row:after {
-  content: "";
-  display: table;
-  clear: both;
+  font-weight: bolder;
+  text-shadow: 2px 2px 2px black;
 }
 
 #ingredients {
@@ -272,6 +267,31 @@ body {
     height: auto;
   }
 }
+/* ************************ SELECTED TAGS ******************************** */
+.selectedTag {
+  margin: 20px 130px;
+  color: white;
+  display: flex;
+  gap: 20px;
+}
+.selectedTag span {
+  padding: 10px;
+  border-radius: 5px;
+}
+.selectedTag span em {
+  margin-left: 10px;
+  font-size: larger;
+}
+.selectedTag .ingTag {
+  background-color: #3282f7;
+}
+.selectedTag .appTag {
+  background-color: #68d9a4;
+}
+.selectedTag .ustTag {
+  background-color: #ed6454;
+}
+
 /*
 
 @import "./components/contactForm";

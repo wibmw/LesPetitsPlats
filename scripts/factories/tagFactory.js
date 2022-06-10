@@ -28,17 +28,17 @@ export default class TagFactory {
     switch (tagType) {
       case 'ING': {
         // Get all Ingredients
-        this.recipes.forEach((recipe) => tags.push(recipe.ingredients.map((item) => item.ingredient)))
+        this.recipes.forEach((recipe) => tags.push(recipe.ingredients.map((item) => item.ingredient.toLowerCase())))
         return this.reduceTags(tags)
       }
       case 'APP': {
         // Get all Appareils
-        this.recipes.forEach((recipe) => tags.push(recipe.appliance))
+        this.recipes.forEach((recipe) => tags.push(recipe.appliance.toLowerCase()))
         return tags
       }
       case 'UST': {
         // Get all Ustensiles
-        this.recipes.forEach((recipe) => tags.push(recipe.ustensils.map((item) => `${item[0].toUpperCase()}${item.slice(1)}`)))
+        this.recipes.forEach((recipe) => tags.push(recipe.ustensils.map((item) => item.toLowerCase()))) // `${item[0].toUpperCase()}${item.slice(1)}`
         return this.reduceTags(tags)
       }
       default:

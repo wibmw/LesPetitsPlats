@@ -3,12 +3,11 @@
 }
 
 .tag {
-  margin: 30px 100px;
+  margin: 0px 100px;
   overflow: hidden;
   border-radius: 5px;
   display: inline-block;
   white-space: nowrap;
-  gap: 30px;
   width: 100%;
 
   & .dropdown {
@@ -49,6 +48,7 @@
       color: $color;
     }
     & .row {
+      box-sizing: border-box;
       background-color: inherit;
       display: none;
       z-index: 1;
@@ -70,15 +70,10 @@
           white-space: nowrap;
         }
         & li:hover {
-          background-color: #ddd;
+          font-weight: bolder;
+          text-shadow: 2px 2px 2px black;
         }
       }
-    }
-
-    & .row:after {
-      content: '';
-      display: table;
-      clear: both;
     }
   }
 }
@@ -101,5 +96,31 @@
   .col {
     width: 100%;
     height: auto;
+  }
+}
+
+/* ************************ SELECTED TAGS ******************************** */
+
+.selectedTag {
+  margin: 20px 130px;
+  color: $color;
+  display: flex;
+  gap: 20px;
+  & span {
+    padding: 10px;
+    border-radius: 5px;
+    & em {
+      margin-left: 10px;
+      font-size: larger;
+    }
+  }
+  & .ingTag {
+    background-color: $blue-tag;
+  }
+  & .appTag {
+    background-color: $green-tag;
+  }
+  & .ustTag {
+    background-color: $red-tag;
   }
 }
