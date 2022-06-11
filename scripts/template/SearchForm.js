@@ -45,12 +45,15 @@ export default class SearchForm {
   clearValidationMessage(element) {
     element.setAttribute('data-error-visible', 'false')
     element.setAttribute('data-error', '')
+    QS('#errorMessage').style.display = 'none'
   }
 
   // set validation message
   setValidationMessage(element, message) {
     element.setAttribute('data-error-visible', 'true')
     element.setAttribute('data-error', message)
+    QS('#gallery').innerHTML = ''
+    QS('#errorMessage').style.display = 'flex'
   }
 
   isIncluded(searchIn, searchFor) {
@@ -89,7 +92,6 @@ export default class SearchForm {
     if (this.filteredRecipes.length) this.clearValidationMessage(search)
     else {
       this.setValidationMessage(search, this.error)
-      QS('#gallery').innerHTML = ''
     }
   }
 
@@ -102,7 +104,6 @@ export default class SearchForm {
     if (searchField.value.length >= 3 || isSelectorsNotEmpty) {
       this.renderGallery()
     } else {
-      QS('#gallery').innerHTML = ''
       this.setValidationMessage(search, this.error)
     }
   }

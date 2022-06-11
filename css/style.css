@@ -57,6 +57,8 @@ body {
   display: flex;
   -ms-flex-justify: space-between;
   justify-content: space-between;
+  position: relative;
+  overflow: hidden;
 }
 #searchSection .search .input-field {
   width: 90%;
@@ -107,7 +109,7 @@ body {
   flex-direction: row;
   justify-content: center;
   gap: 35px;
-  margin: 50px;
+  margin: 130px 50px;
 }
 #gallery article {
   width: 400px;
@@ -134,7 +136,7 @@ body {
 }
 #gallery article .container h2 {
   font-size: 18px;
-  width: 70%;
+  width: 60%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -169,6 +171,50 @@ body {
   overflow: hidden;
 }
 
+#errorMessage {
+  font-size: 2em;
+  font-weight: bolder;
+  padding: 100px;
+  white-space: nowrap;
+  color: #d04f4f;
+  display: none;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1150px) {
+  #gallery {
+    margin: 0px 0px 0px 350px;
+  }
+
+  #main .tag {
+    max-width: 550px;
+    margin-left: 30px;
+  }
+
+  #errorMessage {
+    font-size: 1.5em;
+    margin-top: 250px;
+  }
+}
+@media screen and (max-width: 768px) {
+  #gallery {
+    margin: 300px 20px 0px 40px;
+  }
+
+  #main .selectedTag {
+    margin: 20px 50px;
+  }
+  #main .tag {
+    max-width: 100%;
+    display: grid;
+    justify-items: center;
+  }
+
+  #errorMessage {
+    font-size: 1.2em;
+    margin-top: 0px;
+  }
+}
 * {
   box-sizing: border-box;
 }
@@ -180,6 +226,8 @@ body {
   display: inline-block;
   white-space: nowrap;
   width: 100%;
+  position: absolute;
+  z-index: 2;
 }
 .tag .dropdown {
   float: left;
@@ -282,6 +330,7 @@ body {
 .selectedTag span em {
   margin-left: 10px;
   font-size: larger;
+  cursor: pointer;
 }
 .selectedTag .ingTag {
   background-color: #3282f7;
