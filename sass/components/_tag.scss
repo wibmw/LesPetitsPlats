@@ -1,7 +1,4 @@
-* {
-  box-sizing: border-box;
-}
-
+/* ************************ TAGS LISTS ******************************** */
 .tag {
   margin: 0px 60px;
   overflow: hidden;
@@ -37,7 +34,9 @@
       padding: 14px 16px;
       background-color: inherit;
       width: 95%;
+      height: 65px;
       color: $color;
+      transition: all 1s ease-in-out;
       &::-webkit-input-placeholder {
         /* Chrome/Opera/Safari */
         color: $color;
@@ -53,7 +52,11 @@
       background-color: inherit;
       display: none;
       z-index: 1;
-      transition: 0.5s ease-in-out;
+      opacity: 0;
+      transition: all 1s ease-in-out;
+      animation: rotateX 300ms 60ms ease-in-out forwards;
+      transform-origin: top center;
+
       & .col {
         float: left;
         width: 33.33%;
@@ -78,6 +81,7 @@
     }
   }
 }
+/* ************************ 3 DROPDOWN COLOR ******************************** */
 #ingredients {
   background-color: $blue-tag;
 }
@@ -88,28 +92,16 @@
   background-color: $red-tag;
 }
 
-/* Create three equal columns that floats next to each other */
-
-/* Clear floats after the columns */
-
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .col {
-    width: 100%;
-    height: auto;
-  }
-}
-
 /* ************************ SELECTED TAGS ******************************** */
-
 .selectedTag {
-  margin: 20px 90px;
+  margin: 20px 0 0 80px;
   color: $color;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   & span {
-    padding: 10px;
+    height: 35px;
+    padding: 5px 10px 5px 10px;
     border-radius: 5px;
     & em {
       margin-left: 10px;
@@ -125,5 +117,20 @@
   }
   & .ustTag {
     background-color: $red-tag;
+  }
+}
+
+/* ************************ ANIMATION ******************************** */
+@keyframes rotateX {
+  0% {
+    opacity: 0;
+    transform: rotateX(-90deg);
+  }
+  50% {
+    transform: rotateX(-20deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
   }
 }

@@ -1,0 +1,37 @@
+/* ************************ Responsive < 1150px ******************************** */
+@media screen and (max-width: 1150px) {
+  #gallery {
+    margin: 0px 0px 0px 350px;
+  }
+  #main {
+    & .tag {
+      max-width: 550px;
+      margin-left: 30px;
+    }
+  }
+  #errorMessage {
+    font-size: 1.5em;
+    margin-top: 250px;
+  }
+}
+
+/* ************************ Responsive < 768px ******************************** */
+@media screen and (max-width: 768px) {
+  #gallery {
+    margin: 350px 20px 0px 40px;
+  }
+  #main {
+    & .selectedTag {
+      margin: 20px 50px;
+    }
+    & .tag {
+      max-width: 100%;
+      display: grid;
+      justify-items: center;
+    }
+  }
+  #errorMessage {
+    font-size: 1.2em;
+    margin-top: 0px;
+  }
+}

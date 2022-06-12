@@ -18,7 +18,7 @@ export const trapFocus = (modal) => {
       'button[type=submit], i[tabindex="1"], img[id="closeModal"], input, textarea, li[class="active-item"], [tabindex]:not([tabindex="-1"])'
     )
   )
-  // const modal = document.querySelector('#exampleModal'); // select the modal by it's id
+
   const firstFocusableElement = focusableElements[0]
   const lastFocusableElement = focusableElements[focusableElements.length - 1]
 

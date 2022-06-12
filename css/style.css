@@ -18,6 +18,10 @@ body main {
   width: 100%;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 /*:focus-visible {
     outline: 3px solid $color-pri-dark;
     border-radius: 10px;
@@ -40,6 +44,7 @@ body {
   border: 0;
 }
 
+/* ************************ SEARCH SECTION ******************************** */
 #searchSection {
   display: flex;
   justify-content: center;
@@ -48,6 +53,7 @@ body {
 #searchSection .search {
   max-width: 1280px;
   width: 100%;
+  height: 70px;
   min-height: 60px;
   padding: 0 10px 0 10px;
   background: #e7e7e7;
@@ -69,6 +75,11 @@ body {
   overflow: visible;
   outline: 0;
 }
+#searchSection .search .input-field::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  opacity: 0.7;
+  font-weight: bold;
+}
 #searchSection .search .btn-search {
   background: rgba(255, 255, 255, 0);
   border: 0;
@@ -79,7 +90,7 @@ body {
   height: 40px;
 }
 
-/**************** Error control ****************/
+/* ************************ ERROR CONTROL ******************************** */
 .search[data-error]::after {
   content: attr(data-error);
   font-size: 2em;
@@ -103,13 +114,14 @@ body {
   border: 2px solid #d04f4f;
 }
 
+/* ************************ GALLERY SECTION ******************************** */
 #gallery {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   gap: 35px;
-  margin: 130px 50px;
+  margin: 110px 50px;
 }
 #gallery article {
   width: 400px;
@@ -171,6 +183,7 @@ body {
   overflow: hidden;
 }
 
+/* ************************ ERROR CONTROL ******************************** */
 #errorMessage {
   font-size: 2em;
   font-weight: bolder;
@@ -181,44 +194,7 @@ body {
   justify-content: center;
 }
 
-@media screen and (max-width: 1150px) {
-  #gallery {
-    margin: 0px 0px 0px 350px;
-  }
-
-  #main .tag {
-    max-width: 550px;
-    margin-left: 30px;
-  }
-
-  #errorMessage {
-    font-size: 1.5em;
-    margin-top: 250px;
-  }
-}
-@media screen and (max-width: 768px) {
-  #gallery {
-    margin: 300px 20px 0px 40px;
-  }
-
-  #main .selectedTag {
-    margin: 20px 50px;
-  }
-  #main .tag {
-    max-width: 100%;
-    display: grid;
-    justify-items: center;
-  }
-
-  #errorMessage {
-    font-size: 1.2em;
-    margin-top: 0px;
-  }
-}
-* {
-  box-sizing: border-box;
-}
-
+/* ************************ TAGS LISTS ******************************** */
 .tag {
   margin: 0px 60px;
   overflow: hidden;
@@ -254,7 +230,9 @@ body {
   padding: 14px 16px;
   background-color: inherit;
   width: 95%;
+  height: 65px;
   color: white;
+  transition: all 1s ease-in-out;
 }
 .tag .dropdown .dropdown-button::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
@@ -270,7 +248,10 @@ body {
   background-color: inherit;
   display: none;
   z-index: 1;
-  transition: 0.5s ease-in-out;
+  opacity: 0;
+  transition: all 1s ease-in-out;
+  animation: rotateX 300ms 60ms ease-in-out forwards;
+  transform-origin: top center;
 }
 .tag .dropdown .row .col {
   float: left;
@@ -294,6 +275,7 @@ body {
   text-shadow: 2px 2px 2px black;
 }
 
+/* ************************ 3 DROPDOWN COLOR ******************************** */
 #ingredients {
   background-color: #3282f7;
 }
@@ -306,25 +288,17 @@ body {
   background-color: #ed6454;
 }
 
-/* Create three equal columns that floats next to each other */
-/* Clear floats after the columns */
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .col {
-    width: 100%;
-    height: auto;
-  }
-}
 /* ************************ SELECTED TAGS ******************************** */
 .selectedTag {
-  margin: 20px 90px;
+  margin: 20px 0 0 80px;
   color: white;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 }
 .selectedTag span {
-  padding: 10px;
+  height: 35px;
+  padding: 5px 10px 5px 10px;
   border-radius: 5px;
 }
 .selectedTag span em {
@@ -342,16 +316,56 @@ body {
   background-color: #ed6454;
 }
 
-/*
+/* ************************ ANIMATION ******************************** */
+@keyframes rotateX {
+  0% {
+    opacity: 0;
+    transform: rotateX(-90deg);
+  }
+  50% {
+    transform: rotateX(-20deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+}
+/* ************************ Responsive < 1150px ******************************** */
+@media screen and (max-width: 1150px) {
+  #gallery {
+    margin: 0px 0px 0px 350px;
+  }
 
-@import "./components/contactForm";
-@import "./components/lightbox";
-@import "./components/likes";
-@import "./components/sort";
+  #main .tag {
+    max-width: 550px;
+    margin-left: 30px;
+  }
 
+  #errorMessage {
+    font-size: 1.5em;
+    margin-top: 250px;
+  }
+}
+/* ************************ Responsive < 768px ******************************** */
+@media screen and (max-width: 768px) {
+  #gallery {
+    margin: 350px 20px 0px 40px;
+  }
 
-@import "./layout/photographerHeader";
-*/
+  #main .selectedTag {
+    margin: 20px 50px;
+  }
+  #main .tag {
+    max-width: 100%;
+    display: grid;
+    justify-items: center;
+  }
+
+  #errorMessage {
+    font-size: 1.2em;
+    margin-top: 0px;
+  }
+}
 .logo {
   width: 268px;
   height: 93px;

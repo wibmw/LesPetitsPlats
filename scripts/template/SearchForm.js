@@ -8,12 +8,14 @@ import { CreaE, QS, QSAll, SetAt } from '../utils/domUtils.js'
 
 export default class SearchForm {
   constructor() {
-    this.$wrapperSearch = CreaE('div')
-    SetAt('search', this.$wrapperSearch)
     this.filteredRecipes = []
     this.error = 'Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc...'
+    // DOM elements
+    this.$wrapperSearch = CreaE('div')
+    SetAt('search', this.$wrapperSearch)
   }
 
+  //* ******************** GET A LIST OF ALL SELECTED TAGS  ***********************************/
   getSelectors = () => {
     const ingTag = []
     const appTag = []
@@ -56,11 +58,13 @@ export default class SearchForm {
     QS('#errorMessage').style.display = 'flex'
   }
 
+  //* ******************** CHECK IF SEARCHFOR TAGS ARE IN SEARCHIN ***********************************/
   isIncluded(searchIn, searchFor) {
     if (searchIn.includes(searchFor) || searchFor == null) return true
     return false
   }
 
+  //* ******************** CREATE RECIPE CARDS ***********************************/
   renderGallery() {
     const search = this.$wrapperSearch
     const searchField = search.querySelector('.input-field')
@@ -85,7 +89,7 @@ export default class SearchForm {
       console.log(isSearchIncluded, ' /n', isIngIncluded, ' /n', isAppIncluded, ' /n', isUstIncluded)
       if (isSearchIncluded && isIngIncluded && isAppIncluded && isUstIncluded) {
         const card = new RecipeCard(recipe)
-        document.querySelector('#gallery').appendChild(card.getRecipeCard())
+        document.querySelector('#gallery').appendChild(card.render())
         this.filteredRecipes.push(recipe)
       }
     })
@@ -95,6 +99,7 @@ export default class SearchForm {
     }
   }
 
+  //* ******************** CHECK CONDITIONS BEFORE SEARCH  ***********************************/
   searchValidation() {
     const search = this.$wrapperSearch
     const searchField = search.querySelector('.input-field')
@@ -108,8 +113,8 @@ export default class SearchForm {
     }
   }
 
-  //* ******************** ONSEARCH EVENTS  ***********************************/
-  onSearch() {
+  //* ******************** RENDER THE ALL SECTIONS  ***********************************/
+  render() {
     const search = this.$wrapperSearch
     const searchField = search.querySelector('.input-field')
     const searchButton = search.querySelector('.btn-search')
@@ -130,8 +135,8 @@ export default class SearchForm {
     new TagSelector(tag.getTagsList('UST'), 'UST').render('ustensils')
   }
 
-  searchRender() {
-    // Generate the media cards
+  //* ******************** DISPLAY SEARCH SECTION  ***********************************/
+  display() {
     let dom = ''
     dom += `
             <form  id="searchForm" action="index.html" onsubmit="searchValidation();" novalidate></form>
@@ -146,7 +151,7 @@ export default class SearchForm {
             </form>`
 
     this.$wrapperSearch.innerHTML = dom
-    this.onSearch()
+    this.render()
     return this.$wrapperSearch
   }
 }

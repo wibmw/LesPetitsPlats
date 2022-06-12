@@ -1,10 +1,11 @@
+/* ************************ GALLERY SECTION ******************************** */
 #gallery {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   gap: 35px;
-  margin: 130px 50px;
+  margin: 110px 50px;
   & article {
     width: 400px;
     height: 364px;
@@ -66,6 +67,7 @@
   }
 }
 
+/* ************************ ERROR CONTROL ******************************** */
 #errorMessage {
   font-size: 2em;
   font-weight: bolder;
@@ -74,40 +76,4 @@
   color: $error;
   display: none;
   justify-content: center;
-}
-
-@media screen and (max-width: 1150px) {
-  #gallery {
-    margin: 0px 0px 0px 350px;
-  }
-  #main {
-    & .tag {
-      max-width: 550px;
-      margin-left: 30px;
-    }
-  }
-  #errorMessage {
-    font-size: 1.5em;
-    margin-top: 250px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  #gallery {
-    margin: 300px 20px 0px 40px;
-  }
-  #main {
-    & .selectedTag {
-      margin: 20px 50px;
-    }
-    & .tag {
-      max-width: 100%;
-      display: grid;
-      justify-items: center;
-    }
-  }
-  #errorMessage {
-    font-size: 1.2em;
-    margin-top: 0px;
-  }
 }

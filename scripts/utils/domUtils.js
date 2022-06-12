@@ -47,7 +47,7 @@ export function CreaE(type, options = {}) {
   })
   return element
 }
-
+/** *************** CACHE  **************************** */
 export function memoize(cb) {
   const cache = new Map()
   return (...args) => {
@@ -59,5 +59,3 @@ export function memoize(cb) {
     return result
   }
 }
-
-/** *************** SORT  **************************** */

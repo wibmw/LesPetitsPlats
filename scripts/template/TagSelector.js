@@ -3,13 +3,15 @@ import { CreaE, QS, QSAll, SetAt, ApC } from '../utils/domUtils.js'
 export default class TagSelector {
   constructor(tagsList, tagType) {
     this.tagsList = tagsList
-    this.filteredTags = []
     this.tagType = tagType
+    this.filteredTags = []
+    // DOM elements
     this.$wrapper = CreaE('div')
     SetAt('dropdown', this.$wrapper)
     this.tagWrapper = QS('.tag')
   }
 
+  //* ********************  DISPLAY THE SELECTED TAG  ***********************************/
   createTag(tag) {
     let className = ''
     switch (this.tagType) {
@@ -31,6 +33,7 @@ export default class TagSelector {
     SetAt(className, span)
     span.setAttribute('value', tag)
     span.innerHTML = sTag
+    // CLOSE THE TAG
     QS('em', span).addEventListener('click', () => {
       span.parentElement.removeChild(span)
       QS('.btn-search').click()
@@ -38,6 +41,7 @@ export default class TagSelector {
     selectedTag.appendChild(span)
   }
 
+  //* ******************** SET TAGS CLASSES? ATTRIBUTES AND EVENT  ***********************************/
   setTagsAttributes(parent) {
     QSAll('ul', parent).forEach((ul) => SetAt('col', ul))
     QSAll('li', parent).forEach((li) => {
@@ -50,29 +54,23 @@ export default class TagSelector {
     })
   }
 
-  tagFilter() {
-    const dropdown = this.$wrapper
-    const tagInput = dropdown.querySelector('.dropdown-button')
-    const tagContainer = dropdown.querySelector('.row')
-
-    // console.log(searchField.value.length, ' /n', searchField.value)
-    const tagValue = tagInput.value.toLowerCase()
-    // Filter search
-    const filteredTags = this.tagsList.filter((tag) => tag.toLowerCase().includes(tagValue))
-    tagContainer.innerHTML = this.tagListGenerator(filteredTags)
-    this.setTagsAttributes(tagContainer)
-  }
-
-  //* ******************** ONSEARCH EVENTS  ***********************************/
+  //* ******************** FILTERING TAGS LIST ON INPUT  ***********************************/
   onTagFilter() {
     const dropdown = this.$wrapper
-    const tagInput = dropdown.querySelector('.dropdown-button')
+    const tagInput = QS(`#in${this.tagType}`, dropdown)
+    const tagContainer = QS('.row', dropdown)
+
     // Filter management
     tagInput.addEventListener('input', () => {
-      this.tagFilter()
+      const tagValue = QS(`#in${this.tagType}`).value.toLowerCase()
+      console.log(QS(`#in${this.tagType}`))
+      const filteredTags = this.tagsList.filter((tag) => tag.toLowerCase().includes(tagValue))
+      tagContainer.innerHTML = this.tagListGenerator(filteredTags)
+      this.setTagsAttributes(tagContainer)
     })
   }
 
+  //* ******************** GENERATE THE DROPDOWN'S ITEMS  ***********************************/
   tagListGenerator = (filteredList = false) => {
     let index = 1
     let indexTotal = 1
@@ -96,16 +94,16 @@ export default class TagSelector {
     return tagDropdown
   }
 
+  //* ******************** CREATE THE DROPDOWN LIST  ***********************************/
   render(tagName) {
-    // Generate the sorter element
     let tagDropdown = `
-      <input class="dropdown-button" aria-haspopup="true" aria-expanded="false" placeholder="${tagName[0].toUpperCase()}${tagName.slice(1)}">
+      <input id="in${this.tagType}" class="dropdown-button" aria-haspopup="true" aria-expanded="false" 
+       placeholder="${tagName[0].toUpperCase()}${tagName.slice(1)}">
         <em class="fas fa-angle-down"></em>
       </input>
       <div class="row">`
 
     tagDropdown += this.tagListGenerator()
-
     tagDropdown += `</div>`
 
     this.$wrapper.setAttribute('id', tagName)

@@ -11,24 +11,25 @@ export default class RecipeCard {
     this.description = description
     this.appliance = appliance
     this.ustensils = ustensils
+    // DOM elements
     this.gallery = QS('#gallery')
     this.$wrapperCard = CreaE('article')
     SetAt('card', this.$wrapperCard)
   }
 
+  //* ********************  RESET GALLERY CONTENT  ***********************************/
   clearWrappers() {
-    // Reset media and carousel content
     this.gallery.innerHTML = ''
   }
 
-  getRecipeCard() {
-    // Generate the media cards
+  //* ********************  GENERATE THE CARDS  ***********************************/
+  render() {
     let dom = ''
     dom += `
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="image" alt="Image emplacement" />
-                <div class="container">
-                    <h2>${this.name}</h2><h3><span class="far fa-clock" /> ${this.time} min</h3>
-                    <div class="recipe"><ul class="ingredients" >`
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="image" alt="Image emplacement" />
+            <div class="container">
+                <h2>${this.name}</h2><h3><span class="far fa-clock" /> ${this.time} min</h3>
+            <div class="recipe"><ul class="ingredients" >`
     this.ingredients.forEach((ingredient) => {
       const quantity = ingredient.quantity ? ingredient.quantity : ''
       let unit = ingredient.unit ? ingredient.unit : ''
