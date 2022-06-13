@@ -4,7 +4,7 @@ export default class TagSelector {
   constructor(tagsList, tagType) {
     this.tagsList = tagsList
     this.tagType = tagType
-    this.filteredTags = []
+
     // DOM elements
     this.$wrapper = CreaE('div')
     SetAt('dropdown', this.$wrapper)
@@ -30,6 +30,7 @@ export default class TagSelector {
     const selectedTag = QS('.selectedTag')
     const sTag = `${tag}<em class="far fa-times-circle"></em>`
     const span = CreaE('span')
+
     SetAt(className, span)
     span.setAttribute('value', tag)
     span.innerHTML = sTag
@@ -45,7 +46,7 @@ export default class TagSelector {
   setTagsAttributes(parent) {
     QSAll('ul', parent).forEach((ul) => SetAt('col', ul))
     QSAll('li', parent).forEach((li) => {
-      const tag = li.getAttribute('value')
+      const tag = li.getAttribute('data-value')
       li.addEventListener('click', () => {
         this.createTag(tag)
         QS('.btn-search').click()
@@ -63,7 +64,6 @@ export default class TagSelector {
     // Filter management
     tagInput.addEventListener('input', () => {
       const tagValue = QS(`#in${this.tagType}`).value.toLowerCase()
-      console.log(QS(`#in${this.tagType}`))
       const filteredTags = this.tagsList.filter((tag) => tag.toLowerCase().includes(tagValue))
       tagContainer.innerHTML = this.tagListGenerator(filteredTags)
       this.setTagsAttributes(tagContainer)
@@ -80,7 +80,7 @@ export default class TagSelector {
     tagsList.every((tag) => {
       const upperTag = `${tag[0].toUpperCase()}${tag.slice(1)}`
       if (index === 1) tagDropdown += `<ul>`
-      tagDropdown += `<li value="${tag}" >${upperTag}</li>`
+      tagDropdown += `<li data-value="${tag}" >${upperTag}</li>`
       if (index === 10) tagDropdown += `</ul>`
 
       if (indexTotal == listLenth + 1 && ![10, 20, 30].includes(indexTotal)) tagDropdown += `</ul>`
@@ -97,7 +97,8 @@ export default class TagSelector {
   //* ******************** CREATE THE DROPDOWN LIST  ***********************************/
   render(tagName) {
     let tagDropdown = `
-      <input id="in${this.tagType}" class="dropdown-button" aria-haspopup="true" aria-expanded="false" 
+      <label for="in${this.tagType}" class="sr-only">Liste de ${tagName}</label>
+      <input id="in${this.tagType}" role="textbox" class="dropdown-button" aria-haspopup="true"
        placeholder="${tagName[0].toUpperCase()}${tagName.slice(1)}">
         <em class="fas fa-angle-down"></em>
       </input>

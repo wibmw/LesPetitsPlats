@@ -8,7 +8,6 @@ import { CreaE, QS, QSAll, SetAt } from '../utils/domUtils.js'
 
 export default class SearchForm {
   constructor() {
-    this.filteredRecipes = []
     this.error = 'Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc...'
     // DOM elements
     this.$wrapperSearch = CreaE('div')
@@ -70,7 +69,7 @@ export default class SearchForm {
     const searchField = search.querySelector('.input-field')
     const searchValue = searchField.value.toLowerCase()
     QS('#gallery').innerHTML = ''
-    this.filteredRecipes = []
+    const filteredRecipes = []
     // Get Tags Selectors
     const tagsSelectors = this.getSelectors()
     const ingTags = tagsSelectors[0].join()
@@ -84,19 +83,15 @@ export default class SearchForm {
       const isSearchIncluded = this.isIncluded(recipeIn, searchValue)
       const isIngIncluded = this.isIncluded(ingredients.toLowerCase(), ingTags)
       const isAppIncluded = this.isIncluded(recipe.appliance.toLowerCase(), appTags)
-      console.log(recipe.appliance, ' /n', appTags)
       const isUstIncluded = this.isIncluded(recipe.ustensils.map((item) => item).join(), ustTags)
-      console.log(isSearchIncluded, ' /n', isIngIncluded, ' /n', isAppIncluded, ' /n', isUstIncluded)
+
       if (isSearchIncluded && isIngIncluded && isAppIncluded && isUstIncluded) {
         const card = new RecipeCard(recipe)
         document.querySelector('#gallery').appendChild(card.render())
-        this.filteredRecipes.push(recipe)
+        filteredRecipes.push(recipe)
       }
     })
-    if (this.filteredRecipes.length) this.clearValidationMessage(search)
-    else {
-      this.setValidationMessage(search, this.error)
-    }
+    filteredRecipes.length ? this.clearValidationMessage(search) : this.setValidationMessage(search, this.error)
   }
 
   //* ******************** CHECK CONDITIONS BEFORE SEARCH  ***********************************/
@@ -108,9 +103,7 @@ export default class SearchForm {
 
     if (searchField.value.length >= 3 || isSelectorsNotEmpty) {
       this.renderGallery()
-    } else {
-      this.setValidationMessage(search, this.error)
-    }
+    } else this.setValidationMessage(search, this.error)
   }
 
   //* ******************** RENDER THE ALL SECTIONS  ***********************************/
@@ -139,16 +132,15 @@ export default class SearchForm {
   display() {
     let dom = ''
     dom += `
-            <form  id="searchForm" action="index.html" onsubmit="searchValidation();" novalidate></form>
-                <input type="text" class="input-field" placeholder="Rechercher un recette" />
-                <button class="btn-search" type="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                      <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 
-                      4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
-                    </svg>
-                    <span class="sr-only">Rechercher</span>
-                </button>
-            </form>`
+            <label for="search" class="sr-only">Rechercher une recette</label>
+            <input id="search" type="text" class="input-field" placeholder="Rechercher une recette" />
+            <button class="btn-search" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 
+                  4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <span class="sr-only">Rechercher</span>
+            </button>`
 
     this.$wrapperSearch.innerHTML = dom
     this.render()

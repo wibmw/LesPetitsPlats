@@ -34,7 +34,7 @@ export default class RecipeCard {
       const quantity = ingredient.quantity ? ingredient.quantity : ''
       let unit = ingredient.unit ? ingredient.unit : ''
       unit = unit.length > 3 ? ` ${unit}` : unit
-      dom += `<li><b>${ingredient.ingredient} :</b> ${quantity}${unit}</li>`
+      dom += `<li><strong>${ingredient.ingredient} :</strong> ${quantity}${unit}</li>`
     })
     dom += `</ul><p class="description">${this.description}</p></div></div>`
 
