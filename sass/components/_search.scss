@@ -1,8 +1,9 @@
 /* ************************ SEARCH SECTION ******************************** */
 #searchSection {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  margin: 0 50px;
+  margin: 0 80px;
   & .search {
     max-width: 1280px;
     width: 100%;
@@ -45,23 +46,24 @@
 }
 
 /* ************************ ERROR CONTROL ******************************** */
-.search[data-error]::after {
+div[data-error]::after {
   content: attr(data-error);
   font-size: 2em;
   font-weight: 600;
   color: $error;
   display: block;
-  margin-top: 50px;
-  margin-left: 35px;
   font-size: 15px;
   text-align: left;
   transition: 0.3s;
-  position: absolute;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 15px;
 }
-.search[data-error-visible='true']::after {
+div[data-error-visible='true']::after {
   opacity: 1;
   margin-bottom: 5px;
 }
-.search[data-error-visible='true'] {
+.search[data-error] {
   border: 2px solid $error;
 }

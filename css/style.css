@@ -47,8 +47,9 @@ body {
 /* ************************ SEARCH SECTION ******************************** */
 #searchSection {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  margin: 0 50px;
+  margin: 0 80px;
 }
 #searchSection .search {
   max-width: 1280px;
@@ -91,26 +92,27 @@ body {
 }
 
 /* ************************ ERROR CONTROL ******************************** */
-.search[data-error]::after {
+div[data-error]::after {
   content: attr(data-error);
   font-size: 2em;
   font-weight: 600;
   color: #d04f4f;
   display: block;
-  margin-top: 50px;
-  margin-left: 35px;
   font-size: 15px;
   text-align: left;
   transition: 0.3s;
-  position: absolute;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 15px;
 }
 
-.search[data-error-visible=true]::after {
+div[data-error-visible=true]::after {
   opacity: 1;
   margin-bottom: 5px;
 }
 
-.search[data-error-visible=true] {
+.search[data-error] {
   border: 2px solid #d04f4f;
 }
 
@@ -244,10 +246,8 @@ body {
   color: white;
 }
 .tag .dropdown .row {
-  box-sizing: border-box;
-  background-color: inherit;
   display: none;
-  z-index: 1;
+  margin-top: -30px;
   opacity: 0;
   transition: all 1s ease-in-out;
   animation: rotateX 300ms 60ms ease-in-out forwards;
@@ -256,19 +256,17 @@ body {
 .tag .dropdown .row .col {
   float: left;
   width: 33.33%;
-  padding: 10px;
-  line-height: 3px;
+  padding: 15px;
+  list-style-type: none;
   display: flex;
   flex-flow: column nowrap;
 }
 .tag .dropdown .row .col li {
-  float: none;
   color: white;
   padding: 10px;
   text-decoration: none;
   display: inline-block;
   text-align: left;
-  white-space: nowrap;
 }
 .tag .dropdown .row .col li:hover {
   font-weight: bolder;
@@ -332,6 +330,10 @@ body {
 }
 /* ************************ Responsive < 1150px ******************************** */
 @media screen and (max-width: 1150px) {
+  #searchSection {
+    margin: 0 50px;
+  }
+
   #gallery {
     margin: 0px 0px 0px 350px;
   }
@@ -361,6 +363,7 @@ body {
     max-width: 100%;
     display: grid;
     justify-items: center;
+    margin-left: 0px;
   }
   #main .tag .col {
     float: none;

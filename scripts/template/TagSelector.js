@@ -42,14 +42,27 @@ export default class TagSelector {
     selectedTag.appendChild(span)
   }
 
+  //* ******************** GET A LIST OF ALL SELECTED TAGS  ***********************************/
+  selec() {
+    // const selectedTags = []
+    // QSAll('.selectedTag > span').forEach((span) => selectedTags.push(span.getAttribute('value')))
+    // console.log(selectedTags)
+    return true
+  }
+
   //* ******************** SET TAGS CLASSES? ATTRIBUTES AND EVENT  ***********************************/
   setTagsAttributes(parent) {
     QSAll('ul', parent).forEach((ul) => SetAt('col', ul))
     QSAll('li', parent).forEach((li) => {
       const tag = li.getAttribute('data-value')
+
       li.addEventListener('click', () => {
-        this.createTag(tag)
-        QS('.btn-search').click()
+        const spans = QSAll('span', QS('.selectedTag'))
+        const selectedTag = spans.map((span) => span.getAttribute('value'))
+        if (!selectedTag.includes(tag)) {
+          this.createTag(tag)
+          QS('.btn-search').click()
+        }
       })
       SetAt('dropdown-item', li)
     })

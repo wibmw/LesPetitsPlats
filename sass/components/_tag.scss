@@ -48,10 +48,8 @@
       color: $color;
     }
     & .row {
-      box-sizing: border-box;
-      background-color: inherit;
       display: none;
-      z-index: 1;
+      margin-top: -30px;
       opacity: 0;
       transition: all 1s ease-in-out;
       animation: rotateX 300ms 60ms ease-in-out forwards;
@@ -60,18 +58,16 @@
       & .col {
         float: left;
         width: 33.33%;
-        padding: 10px;
-        line-height: 3px;
+        padding: 15px;
+        list-style-type: none;
         display: flex;
         flex-flow: column nowrap;
         & li {
-          float: none;
           color: white;
           padding: 10px;
           text-decoration: none;
           display: inline-block;
           text-align: left;
-          white-space: nowrap;
         }
         & li:hover {
           font-weight: bolder;

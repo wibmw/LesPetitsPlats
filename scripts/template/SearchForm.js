@@ -14,6 +14,22 @@ export default class SearchForm {
     SetAt('search', this.$wrapperSearch)
   }
 
+  //* ******************** FILTERING TAGS LIST ON INPUT  ***********************************/
+  onTagSearch(recipes) {
+    QS('.tag').innerHTML = ''
+
+    // Get Tags Selectors
+    const tagsSelectors = this.getSelectors()
+    const ingTags = tagsSelectors[0].join()
+    const appTags = tagsSelectors[1].join()
+    const ustTags = tagsSelectors[2].join()
+    // Filter management
+    const tag = new TagFactory(recipes)
+    new TagSelector(tag.getTagsList('ING', ingTags), 'ING').render('ingredients')
+    new TagSelector(tag.getTagsList('APP', appTags), 'APP').render('appareils')
+    new TagSelector(tag.getTagsList('UST', ustTags), 'UST').render('ustensils')
+  }
+
   //* ******************** GET A LIST OF ALL SELECTED TAGS  ***********************************/
   getSelectors = () => {
     const ingTag = []
@@ -46,6 +62,7 @@ export default class SearchForm {
   clearValidationMessage(element) {
     element.setAttribute('data-error-visible', 'false')
     element.setAttribute('data-error', '')
+    QS('.search').removeAttribute('data-error')
     QS('#errorMessage').style.display = 'none'
   }
 
@@ -53,6 +70,7 @@ export default class SearchForm {
   setValidationMessage(element, message) {
     element.setAttribute('data-error-visible', 'true')
     element.setAttribute('data-error', message)
+    QS('.search').setAttribute('data-error', '')
     QS('#gallery').innerHTML = ''
     QS('#errorMessage').style.display = 'flex'
   }
@@ -64,10 +82,11 @@ export default class SearchForm {
   }
 
   //* ******************** CREATE RECIPE CARDS ***********************************/
-  renderGallery() {
+  renderGallery(allRecipe) {
     const search = this.$wrapperSearch
     const searchField = search.querySelector('.input-field')
     const searchValue = searchField.value.toLowerCase()
+    const searchError = QS('#searchError')
     QS('#gallery').innerHTML = ''
     const filteredRecipes = []
     // Get Tags Selectors
@@ -78,32 +97,44 @@ export default class SearchForm {
 
     // Filter search
     data.forEach((recipe) => {
-      const ingredients = recipe.ingredients.map((item) => item.ingredient).join()
-      const recipeIn = `${recipe.name} ${ingredients} ${recipe.description}`.toLowerCase()
-      const isSearchIncluded = this.isIncluded(recipeIn, searchValue)
-      const isIngIncluded = this.isIncluded(ingredients.toLowerCase(), ingTags)
-      const isAppIncluded = this.isIncluded(recipe.appliance.toLowerCase(), appTags)
-      const isUstIncluded = this.isIncluded(recipe.ustensils.map((item) => item).join(), ustTags)
-
-      if (isSearchIncluded && isIngIncluded && isAppIncluded && isUstIncluded) {
+      if (allRecipe) {
         const card = new RecipeCard(recipe)
         document.querySelector('#gallery').appendChild(card.render())
         filteredRecipes.push(recipe)
+      } else {
+        const ingredients = recipe.ingredients.map((item) => item.ingredient).join()
+        const recipeIn = `${recipe.name} ${ingredients} ${recipe.description}`.toLowerCase()
+        const isSearchIncluded = this.isIncluded(recipeIn, searchValue)
+        const isIngIncluded = this.isIncluded(ingredients.toLowerCase(), ingTags)
+        const isAppIncluded = this.isIncluded(recipe.appliance.toLowerCase(), appTags)
+        const isUstIncluded = this.isIncluded(recipe.ustensils.map((item) => item).join(), ustTags)
+
+        if (isSearchIncluded && isIngIncluded && isAppIncluded && isUstIncluded) {
+          const card = new RecipeCard(recipe)
+          document.querySelector('#gallery').appendChild(card.render())
+          filteredRecipes.push(recipe)
+        }
       }
     })
-    filteredRecipes.length ? this.clearValidationMessage(search) : this.setValidationMessage(search, this.error)
+    if (filteredRecipes.length) {
+      this.onTagSearch(filteredRecipes)
+      this.clearValidationMessage(searchError)
+    } else this.setValidationMessage(searchError, this.error)
   }
 
   //* ******************** CHECK CONDITIONS BEFORE SEARCH  ***********************************/
   searchValidation() {
+    const searchError = QS('#searchError')
     const search = this.$wrapperSearch
     const searchField = search.querySelector('.input-field')
     const selectors = this.getSelectors()
     const isSelectorsNotEmpty = selectors[0].length + selectors[1].length + selectors[2].length
 
-    if (searchField.value.length >= 3 || isSelectorsNotEmpty) {
-      this.renderGallery()
-    } else this.setValidationMessage(search, this.error)
+    if (searchField.value.length >= 3 || isSelectorsNotEmpty) this.renderGallery(false)
+    else if (searchField.value.length < 3 || isSelectorsNotEmpty) {
+      this.clearValidationMessage(searchError)
+      this.renderGallery(true)
+    }
   }
 
   //* ******************** RENDER THE ALL SECTIONS  ***********************************/

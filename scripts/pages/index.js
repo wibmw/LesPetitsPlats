@@ -15,7 +15,7 @@ class IndexPage {
 
   init() {
     // Display Search & Tags Sections
-    document.querySelector('#searchSection').appendChild(new SearchForm().display())
+    document.querySelector('#searchSection').prepend(new SearchForm().display())
     // Display All Recipes
     this.displayIndexData(data)
   }

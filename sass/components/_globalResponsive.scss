@@ -1,5 +1,8 @@
 /* ************************ Responsive < 1150px ******************************** */
 @media screen and (max-width: 1150px) {
+  #searchSection {
+    margin: 0 50px;
+  }
   #gallery {
     margin: 0px 0px 0px 350px;
   }
@@ -30,6 +33,7 @@
       max-width: 100%;
       display: grid;
       justify-items: center;
+      margin-left: 0px;
       & .col {
         float: none;
       }
