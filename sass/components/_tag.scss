@@ -17,15 +17,6 @@
     outline: none;
     border-radius: 5px;
     width: auto;
-    &:hover {
-      .row {
-        display: block;
-      }
-      em {
-        transform: rotate(-180deg);
-        transition: 0.5s ease-in-out;
-      }
-    }
     & .dropdown-button {
       font-size: 16px;
       font-weight: bold;
@@ -36,32 +27,50 @@
       width: 95%;
       height: 65px;
       color: $color;
-      transition: all 1s ease-in-out;
       &::-webkit-input-placeholder {
-        /* Chrome/Opera/Safari */
         color: $color;
+      }
+    }
+    &:hover {
+      & em {
+        transform: rotate(-180deg);
+        transition: 0.5s ease-in-out;
+      }
+      & .row {
+        opacity: 1;
+        width: auto;
+        & .col {
+          height: auto;
+          padding: 15px;
+          opacity: 1;
+          transition: 0.5s ease-in-out;
+          transform-style: preserve-3d;
+        }
       }
     }
     & em {
       position: absolute;
-      margin: 13px 0 0 -10px;
+      margin: 23px 0 0 -10px;
       color: $color;
+      transform: rotate(0deg);
+      transition: 0.5s ease-in-out;
     }
     & .row {
-      display: none;
       margin-top: -30px;
       opacity: 0;
-      transition: all 1s ease-in-out;
-      animation: rotateX 300ms 60ms ease-in-out forwards;
-      transform-origin: top center;
+      width: min-content;
 
       & .col {
         float: left;
         width: 33.33%;
-        padding: 15px;
         list-style-type: none;
         display: flex;
         flex-flow: column nowrap;
+        transition: 0.5s ease-in-out;
+        transform-style: preserve-3d;
+        height: 0px;
+        padding: 0px;
+        opacity: 0;
         & li {
           color: white;
           padding: 10px;
@@ -77,6 +86,7 @@
     }
   }
 }
+
 /* ************************ 3 DROPDOWN COLOR ******************************** */
 #ingredients {
   background-color: $blue-tag;
@@ -113,20 +123,5 @@
   }
   & .ustTag {
     background-color: $red-tag;
-  }
-}
-
-/* ************************ ANIMATION ******************************** */
-@keyframes rotateX {
-  0% {
-    opacity: 0;
-    transform: rotateX(-90deg);
-  }
-  50% {
-    transform: rotateX(-20deg);
-  }
-  100% {
-    opacity: 1;
-    transform: rotateX(0deg);
   }
 }

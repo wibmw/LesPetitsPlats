@@ -217,13 +217,6 @@ div[data-error-visible=true]::after {
   border-radius: 5px;
   width: auto;
 }
-.tag .dropdown:hover .row {
-  display: block;
-}
-.tag .dropdown:hover em {
-  transform: rotate(-180deg);
-  transition: 0.5s ease-in-out;
-}
 .tag .dropdown .dropdown-button {
   font-size: 16px;
   font-weight: bold;
@@ -234,32 +227,48 @@ div[data-error-visible=true]::after {
   width: 95%;
   height: 65px;
   color: white;
-  transition: all 1s ease-in-out;
 }
 .tag .dropdown .dropdown-button::-webkit-input-placeholder {
-  /* Chrome/Opera/Safari */
   color: white;
+}
+.tag .dropdown:hover em {
+  transform: rotate(-180deg);
+  transition: 0.5s ease-in-out;
+}
+.tag .dropdown:hover .row {
+  opacity: 1;
+  width: auto;
+}
+.tag .dropdown:hover .row .col {
+  height: auto;
+  padding: 15px;
+  opacity: 1;
+  transition: 0.5s ease-in-out;
+  transform-style: preserve-3d;
 }
 .tag .dropdown em {
   position: absolute;
-  margin: 13px 0 0 -10px;
+  margin: 23px 0 0 -10px;
   color: white;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
 }
 .tag .dropdown .row {
-  display: none;
   margin-top: -30px;
   opacity: 0;
-  transition: all 1s ease-in-out;
-  animation: rotateX 300ms 60ms ease-in-out forwards;
-  transform-origin: top center;
+  width: min-content;
 }
 .tag .dropdown .row .col {
   float: left;
   width: 33.33%;
-  padding: 15px;
   list-style-type: none;
   display: flex;
   flex-flow: column nowrap;
+  transition: 0.5s ease-in-out;
+  transform-style: preserve-3d;
+  height: 0px;
+  padding: 0px;
+  opacity: 0;
 }
 .tag .dropdown .row .col li {
   color: white;
@@ -314,20 +323,6 @@ div[data-error-visible=true]::after {
   background-color: #ed6454;
 }
 
-/* ************************ ANIMATION ******************************** */
-@keyframes rotateX {
-  0% {
-    opacity: 0;
-    transform: rotateX(-90deg);
-  }
-  50% {
-    transform: rotateX(-20deg);
-  }
-  100% {
-    opacity: 1;
-    transform: rotateX(0deg);
-  }
-}
 /* ************************ Responsive < 1150px ******************************** */
 @media screen and (max-width: 1150px) {
   #searchSection {
