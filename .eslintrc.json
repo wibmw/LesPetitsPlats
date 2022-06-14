@@ -39,6 +39,7 @@
     "no-param-reassign": ["error", { "props": false }],
     "max-len": ["error", { "ignoreComments": true, "code": 150 }],
     "no-underscore-dangle": ["error", { "allowAfterThis": true }],
-    "no-console": ["error", { "allow": ["log"] }]
+    "no-console": ["error", { "allow": ["log"] }],
+    "no-restricted-syntax": ["error", "WithStatement", "BinaryExpression[operator='in']"]
   }
 }

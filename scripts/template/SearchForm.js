@@ -18,16 +18,11 @@ export default class SearchForm {
   onTagSearch(recipes) {
     QS('.tag').innerHTML = ''
 
-    // Get Tags Selectors
-    const tagsSelectors = this.getSelectors()
-    const ingTags = tagsSelectors[0].join()
-    const appTags = tagsSelectors[1].join()
-    const ustTags = tagsSelectors[2].join()
     // Filter management
     const tag = new TagFactory(recipes)
-    new TagSelector(tag.getTagsList('ING', ingTags), 'ING').render('ingredients')
-    new TagSelector(tag.getTagsList('APP', appTags), 'APP').render('appareils')
-    new TagSelector(tag.getTagsList('UST', ustTags), 'UST').render('ustensils')
+    new TagSelector(tag.getTagsList('ING'), 'ING').render('ingredients')
+    new TagSelector(tag.getTagsList('APP'), 'APP').render('appareils')
+    new TagSelector(tag.getTagsList('UST'), 'UST').render('ustensils')
   }
 
   //* ******************** GET A LIST OF ALL SELECTED TAGS  ***********************************/
@@ -36,7 +31,7 @@ export default class SearchForm {
     const appTag = []
     const ustTag = []
 
-    QSAll('.selectedTag > span').forEach((span) => {
+    for (const span of QSAll('.selectedTag > span')) {
       const tagType = span.getAttribute('class')
       const value = span.getAttribute('value')
       switch (tagType) {
@@ -52,7 +47,7 @@ export default class SearchForm {
         default:
           throw error
       }
-    })
+    }
 
     return [ingTag, appTag, ustTag]
   }
@@ -79,10 +74,10 @@ export default class SearchForm {
   isIncluded(searchIn, searchFor, isING = false) {
     if (isING && searchFor) {
       let isIn = true
-      searchFor.forEach((item) => {
+      for (const item of searchFor) {
         if (searchIn.includes(item) && isIn) isIn = true
         else isIn = false
-      })
+      }
       return isIn
     }
 
@@ -106,7 +101,7 @@ export default class SearchForm {
     const ustTags = tagsSelectors[2].join()
 
     // Filter search
-    data.forEach((recipe) => {
+    for (const recipe of data) {
       // Display All recipes
       if (allRecipe) {
         const card = new RecipeCard(recipe)
@@ -119,7 +114,10 @@ export default class SearchForm {
         const isSearchIncluded = this.isIncluded(recipeIn, searchValue)
         const isIngIncluded = this.isIncluded(ingredients.toLowerCase(), ingTags.split(','), true)
         const isAppIncluded = this.isIncluded(recipe.appliance.toLowerCase(), appTags)
-        const isUstIncluded = this.isIncluded(recipe.ustensils.map((item) => item.toLowerCase()).join(), ustTags)
+        const ustensils = []
+        for (const item of recipe.ustensils) ustensils.push(item.toLowerCase())
+        const isUstIncluded = this.isIncluded(ustensils.join(), ustTags)
+
         // Display valide recipes
         if (isSearchIncluded && isIngIncluded && isAppIncluded && isUstIncluded) {
           const card = new RecipeCard(recipe)
@@ -127,7 +125,7 @@ export default class SearchForm {
           filteredRecipes.push(recipe)
         }
       }
-    })
+    }
     // If we got results, we clear all errors Else we display an error
     if (filteredRecipes.length) {
       this.onTagSearch(filteredRecipes)

@@ -30,12 +30,14 @@ export default class RecipeCard {
             <div class="container">
                 <h2>${this.name}</h2><h3><span class="far fa-clock" /> ${this.time} min</h3>
             <div class="recipe"><ul class="ingredients" >`
-    this.ingredients.forEach((ingredient) => {
+
+    for (const ingredient of this.ingredients) {
       const quantity = ingredient.quantity ? ingredient.quantity : ''
       let unit = ingredient.unit ? ingredient.unit : ''
       unit = unit.length > 3 ? ` ${unit}` : unit
       dom += `<li><strong>${ingredient.ingredient} :</strong> ${quantity}${unit}</li>`
-    })
+    }
+
     dom += `</ul><p class="description">${this.description}</p></div></div>`
 
     this.$wrapperCard.innerHTML = dom

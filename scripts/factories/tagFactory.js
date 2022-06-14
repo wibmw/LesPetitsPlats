@@ -34,6 +34,7 @@ export default class TagFactory {
       case 'APP': {
         // Get all Appareils
         this.recipes.forEach((recipe) => tags.push(recipe.appliance.toLowerCase()))
+        console.log(tags)
         return tags
       }
       case 'UST': {
