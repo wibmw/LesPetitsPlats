@@ -76,7 +76,19 @@ export default class SearchForm {
   }
 
   //* ******************** CHECK IF SEARCHFOR TAGS ARE IN SEARCHIN ***********************************/
-  isIncluded(searchIn, searchFor) {
+  isIncluded(searchIn, searchFor, isING = false) {
+    console.log(searchIn, ' /n', searchFor)
+    if (isING && searchFor) {
+      console.log('/* ******************** <NOTELIF> ***********************************/')
+      let isIn = true
+      searchFor.forEach((item) => {
+        console.log(item)
+        if (searchIn.includes(item) && isIn) isIn = true
+        else isIn = false
+      })
+      return isIn
+    }
+    console.log('/* ******************** <ELIF> ***********************************/')
     if (searchIn.includes(searchFor) || searchFor == null) return true
     return false
   }
@@ -85,7 +97,8 @@ export default class SearchForm {
   renderGallery(allRecipe) {
     const search = this.$wrapperSearch
     const searchField = search.querySelector('.input-field')
-    const searchValue = searchField.value.toLowerCase()
+    let searchValue = searchField.value.toLowerCase()
+    if (searchValue.length < 3) searchValue = ''
     const searchError = QS('#searchError')
     QS('#gallery').innerHTML = ''
     const filteredRecipes = []
@@ -102,18 +115,21 @@ export default class SearchForm {
         document.querySelector('#gallery').appendChild(card.render())
         filteredRecipes.push(recipe)
       } else {
+        console.log(`/* ******************** <${recipe.name}> ***********************************/`)
         const ingredients = recipe.ingredients.map((item) => item.ingredient).join()
         const recipeIn = `${recipe.name} ${ingredients} ${recipe.description}`.toLowerCase()
         const isSearchIncluded = this.isIncluded(recipeIn, searchValue)
-        const isIngIncluded = this.isIncluded(ingredients.toLowerCase(), ingTags)
+        const isIngIncluded = this.isIncluded(ingredients.toLowerCase(), ingTags.split(','), true)
         const isAppIncluded = this.isIncluded(recipe.appliance.toLowerCase(), appTags)
-        const isUstIncluded = this.isIncluded(recipe.ustensils.map((item) => item).join(), ustTags)
-
+        const isUstIncluded = this.isIncluded(recipe.ustensils.map((item) => item.toLowerCase()).join(), ustTags)
+        // console.log(ingredients.toLowerCase())
+        console.log(recipe.name, ' /n', isSearchIncluded, ' /n', isIngIncluded, ' /n', isAppIncluded, ' /n', isUstIncluded, ' /n', ingTags)
         if (isSearchIncluded && isIngIncluded && isAppIncluded && isUstIncluded) {
           const card = new RecipeCard(recipe)
           document.querySelector('#gallery').appendChild(card.render())
           filteredRecipes.push(recipe)
         }
+        console.log(`/* ******************** <END> ***********************************/`)
       }
     })
     if (filteredRecipes.length) {
@@ -131,7 +147,7 @@ export default class SearchForm {
     const isSelectorsNotEmpty = selectors[0].length + selectors[1].length + selectors[2].length
 
     if (searchField.value.length >= 3 || isSelectorsNotEmpty) this.renderGallery(false)
-    else if (searchField.value.length < 3 || isSelectorsNotEmpty) {
+    else if (searchField.value.length <= 3 || isSelectorsNotEmpty) {
       this.clearValidationMessage(searchError)
       this.renderGallery(true)
     }
