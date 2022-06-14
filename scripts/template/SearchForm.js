@@ -18,16 +18,11 @@ export default class SearchForm {
   onTagSearch(recipes) {
     QS('.tag').innerHTML = ''
 
-    // Get Tags Selectors
-    const tagsSelectors = this.getSelectors()
-    const ingTags = tagsSelectors[0].join()
-    const appTags = tagsSelectors[1].join()
-    const ustTags = tagsSelectors[2].join()
     // Filter management
     const tag = new TagFactory(recipes)
-    new TagSelector(tag.getTagsList('ING', ingTags), 'ING').render('ingredients')
-    new TagSelector(tag.getTagsList('APP', appTags), 'APP').render('appareils')
-    new TagSelector(tag.getTagsList('UST', ustTags), 'UST').render('ustensils')
+    new TagSelector(tag.getTagsList('ING'), 'ING').render('ingredients')
+    new TagSelector(tag.getTagsList('APP'), 'APP').render('appareils')
+    new TagSelector(tag.getTagsList('UST'), 'UST').render('ustensils')
   }
 
   //* ******************** GET A LIST OF ALL SELECTED TAGS  ***********************************/
@@ -118,8 +113,10 @@ export default class SearchForm {
         // Check All Search and Tags Values
         const isSearchIncluded = this.isIncluded(recipeIn, searchValue)
         const isIngIncluded = this.isIncluded(ingredients.toLowerCase(), ingTags.split(','), true)
-        const isAppIncluded = this.isIncluded(recipe.appliance.toLowerCase(), appTags)
-        const isUstIncluded = this.isIncluded(recipe.ustensils.map((item) => item.toLowerCase()).join(), ustTags)
+        const isAppIncluded = this.isIncluded(recipe.appliance.toLowerCase(), appTags.split(','), true)
+        const isUstIncluded = this.isIncluded(recipe.ustensils.map((item) => item.toLowerCase()).join(), ustTags.split(','), true)
+        console.log(recipe.name)
+        console.log(recipe.ustensils.map((item) => item.toLowerCase()).join(), ' /n', ustTags)
         // Display valide recipes
         if (isSearchIncluded && isIngIncluded && isAppIncluded && isUstIncluded) {
           const card = new RecipeCard(recipe)

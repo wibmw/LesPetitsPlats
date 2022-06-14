@@ -42,14 +42,6 @@ export default class TagSelector {
     selectedTag.appendChild(span)
   }
 
-  //* ******************** GET A LIST OF ALL SELECTED TAGS  ***********************************/
-  selec() {
-    // const selectedTags = []
-    // QSAll('.selectedTag > span').forEach((span) => selectedTags.push(span.getAttribute('value')))
-    // console.log(selectedTags)
-    return true
-  }
-
   //* ******************** SET TAGS CLASSES? ATTRIBUTES AND EVENT  ***********************************/
   setTagsAttributes(parent) {
     QSAll('ul', parent).forEach((ul) => SetAt('col', ul))
@@ -60,6 +52,7 @@ export default class TagSelector {
         const spans = QSAll('span', QS('.selectedTag'))
         const selectedTag = spans.map((span) => span.getAttribute('value'))
         if (!selectedTag.includes(tag)) {
+          console.log(tag)
           this.createTag(tag)
           QS('.btn-search').click()
         }
