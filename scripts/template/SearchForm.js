@@ -113,10 +113,10 @@ export default class SearchForm {
         // Check All Search and Tags Values
         const isSearchIncluded = this.isIncluded(recipeIn, searchValue)
         const isIngIncluded = this.isIncluded(ingredients.toLowerCase(), ingTags.split(','), true)
-        const isAppIncluded = this.isIncluded(recipe.appliance.toLowerCase(), appTags)
+        const isAppIncluded = this.isIncluded(recipe.appliance.toLowerCase(), appTags.split(','), true)
         const ustensils = []
         for (const item of recipe.ustensils) ustensils.push(item.toLowerCase())
-        const isUstIncluded = this.isIncluded(ustensils.join(), ustTags)
+        const isUstIncluded = this.isIncluded(ustensils.join(), ustTags.split(','), true)
 
         // Display valide recipes
         if (isSearchIncluded && isIngIncluded && isAppIncluded && isUstIncluded) {
