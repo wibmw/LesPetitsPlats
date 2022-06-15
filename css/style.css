@@ -216,6 +216,7 @@ div[data-error-visible=true]::after {
   outline: none;
   border-radius: 5px;
   width: auto;
+  min-height: 66px;
 }
 .tag .dropdown .dropdown-button {
   font-size: 16px;
@@ -227,6 +228,7 @@ div[data-error-visible=true]::after {
   width: 95%;
   height: 65px;
   color: white;
+  cursor: pointer;
 }
 .tag .dropdown .dropdown-button::-webkit-input-placeholder {
   color: white;
@@ -280,6 +282,7 @@ div[data-error-visible=true]::after {
 .tag .dropdown .row .col li:hover {
   font-weight: bolder;
   text-shadow: 2px 2px 2px black;
+  cursor: pointer;
 }
 
 /* ************************ 3 DROPDOWN COLOR ******************************** */
@@ -291,7 +294,7 @@ div[data-error-visible=true]::after {
   background-color: #68d9a4;
 }
 
-#ustensils {
+#ustensiles {
   background-color: #ed6454;
 }
 

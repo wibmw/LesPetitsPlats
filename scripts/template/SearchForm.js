@@ -22,7 +22,7 @@ export default class SearchForm {
     const tag = new TagFactory(recipes)
     new TagSelector(tag.getTagsList('ING'), 'ING').render('ingredients')
     new TagSelector(tag.getTagsList('APP'), 'APP').render('appareils')
-    new TagSelector(tag.getTagsList('UST'), 'UST').render('ustensils')
+    new TagSelector(tag.getTagsList('UST'), 'UST').render('ustensiles')
   }
 
   //* ******************** GET A LIST OF ALL SELECTED TAGS  ***********************************/
@@ -166,7 +166,7 @@ export default class SearchForm {
     const tag = new TagFactory(data)
     new TagSelector(tag.getTagsList('ING'), 'ING').render('ingredients')
     new TagSelector(tag.getTagsList('APP'), 'APP').render('appareils')
-    new TagSelector(tag.getTagsList('UST'), 'UST').render('ustensils')
+    new TagSelector(tag.getTagsList('UST'), 'UST').render('ustensiles')
   }
 
   //* ******************** DISPLAY SEARCH SECTION  ***********************************/

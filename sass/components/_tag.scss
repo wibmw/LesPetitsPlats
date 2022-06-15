@@ -17,6 +17,7 @@
     outline: none;
     border-radius: 5px;
     width: auto;
+    min-height: 66px;
     & .dropdown-button {
       font-size: 16px;
       font-weight: bold;
@@ -27,6 +28,7 @@
       width: 95%;
       height: 65px;
       color: $color;
+      cursor: pointer;
       &::-webkit-input-placeholder {
         color: $color;
       }
@@ -81,6 +83,7 @@
         & li:hover {
           font-weight: bolder;
           text-shadow: 2px 2px 2px black;
+          cursor: pointer;
         }
       }
     }
@@ -94,7 +97,7 @@
 #appareils {
   background-color: $green-tag;
 }
-#ustensils {
+#ustensiles {
   background-color: $red-tag;
 }
 

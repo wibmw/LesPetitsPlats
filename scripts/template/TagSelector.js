@@ -104,7 +104,7 @@ export default class TagSelector {
   render(tagName) {
     let tagDropdown = `
       <label for="in${this.tagType}" class="sr-only">Liste de ${tagName}</label>
-      <input id="in${this.tagType}" role="textbox" class="dropdown-button" aria-haspopup="true"
+      <input id="in${this.tagType}" class="dropdown-button" aria-haspopup="true"
        placeholder="${tagName[0].toUpperCase()}${tagName.slice(1)}">
         <em class="fas fa-angle-down"></em>
       </input>
