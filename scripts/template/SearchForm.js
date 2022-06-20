@@ -115,8 +115,6 @@ export default class SearchForm {
         const isIngIncluded = this.isIncluded(ingredients.toLowerCase(), ingTags.split(','), true)
         const isAppIncluded = this.isIncluded(recipe.appliance.toLowerCase(), appTags.split(','), true)
         const isUstIncluded = this.isIncluded(recipe.ustensils.map((item) => item.toLowerCase()).join(), ustTags.split(','), true)
-        console.log(recipe.name)
-        console.log(recipe.ustensils.map((item) => item.toLowerCase()).join(), ' /n', ustTags)
         // Display valide recipes
         if (isSearchIncluded && isIngIncluded && isAppIncluded && isUstIncluded) {
           const card = new RecipeCard(recipe)

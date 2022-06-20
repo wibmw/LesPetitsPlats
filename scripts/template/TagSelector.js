@@ -52,7 +52,6 @@ export default class TagSelector {
         const spans = QSAll('span', QS('.selectedTag'))
         const selectedTag = spans.map((span) => span.getAttribute('value'))
         if (!selectedTag.includes(tag)) {
-          console.log(tag)
           this.createTag(tag)
           QS('.btn-search').click()
         }
